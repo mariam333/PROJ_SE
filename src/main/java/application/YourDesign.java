@@ -15,7 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 
-//import src.application.String;
+
 import src.main.java.application.ConnectController;
 
 
@@ -43,25 +43,21 @@ public class YourDesign implements Initializable {
     private Button submit; // Value injected by FXMLLoader
 
     String MyEmail = null;
-    String myName="";
+
 	public void SeTEmail(String theEmail) {
 		// TODO Auto-generated method stub
 		MyEmail = theEmail;
-	}
-	public void SeTName(String name) {
-		// TODO Auto-generated method stub
-		myName = name;
 	}
 	
 	@FXML
     void back(ActionEvent event) throws IOException 
     {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("MyOrder.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		HomePageController home = loader.getController();
+		OrderController employee = loader.getController();
 		//Image im = new Image("images/background.jpg");
 		//employee.setimage(im);
-		home.setEmail(MyEmail);
+		employee.setEmail(MyEmail);
 		Scene regist = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(regist);
@@ -69,18 +65,17 @@ public class YourDesign implements Initializable {
 	}
     @FXML
 	void Create(ActionEvent event) throws IOException {
-		String message = "Create#" + pro.getText() + "#" + price.getText() + "#" + color.getText() + "#"
-				+ details.getText() ;
-		ConnectController.client.handleMessageFromClientUI(message);
-		if ("Created".equals(ConnectController.client.servermsg)) {
-			JOptionPane.showMessageDialog(null, "product Created Successfully!! ");
-
-		} else if ("NotCreated".equals(ConnectController.client.servermsg)) {
-			JOptionPane.showMessageDialog(null, "product can't created!! ");
-
-		}
-
-	}
+		ItemPersonalClient C=  new ItemPersonalClient(color.getText(),Double.parseDouble(price.getText()) , pro.getText());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Order.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		OrderController employee = loader.getController();
+		employee.setEmail(MyEmail);
+		Scene regist = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(regist);
+		app_stage.show();
+    }
+	
     @Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

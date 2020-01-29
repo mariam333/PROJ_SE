@@ -90,7 +90,7 @@
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="addimageBtn" disable="true" layoutX="421.0" layoutY="126.0" mnemonicParsing="false" onAction="#addImage" opacity="0.5" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #FAA8D8;" text="tap to insert image">
+      <Button fx:id="addimage" disable="true" layoutX="430.0" layoutY="57.0" mnemonicParsing="false" opacity="0.5" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #FAA8D8;" text="tap to insert image">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
@@ -113,6 +113,31 @@
       <HBox layoutX="164.0" layoutY="567.0" prefHeight="31.0" prefWidth="199.0">
          <children>
             <TextField fx:id="editprice" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="new price" style="-fx-background-color: #fff;" />
+         </children>
+      </HBox>
+      <HBox layoutX="392.0" layoutY="192.0" prefHeight="31.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="onsale" disable="true" opacity="0.5" prefHeight="33.0" prefWidth="199.0" promptText="sale" style="-fx-background-color: A0F8F0;" />
+         </children>
+      </HBox>
+      <HBox layoutX="392.0" layoutY="154.0" prefHeight="31.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="store" disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="Store id" style="-fx-background-color: A0F8F0;" />
+         </children>
+      </HBox>
+      <HBox layoutX="392.0" layoutY="114.0" prefHeight="31.0" prefWidth="200.0">
+         <children>
+            <TextField fx:id="quantiy" disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="quantiy" style="-fx-background-color: A0F8F0;" />
+         </children>
+      </HBox>
+      <HBox layoutX="377.0" layoutY="525.0" prefHeight="31.0" prefWidth="199.0">
+         <children>
+            <TextField fx:id="editstore" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="store" style="-fx-background-color: #fff;" />
+         </children>
+      </HBox>
+      <HBox layoutX="377.0" layoutY="567.0" prefHeight="31.0" prefWidth="199.0">
+         <children>
+            <TextField fx:id="editquanity" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="quanity" style="-fx-background-color: #fff;" />
          </children>
       </HBox>
    </children>

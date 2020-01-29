@@ -36,8 +36,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import src.application.Connect;
-import src.application.String;
+
 import javafx.scene.input.MouseEvent;
 
 
@@ -195,8 +194,7 @@ public class HomePageController implements Initializable  {
     		FXMLLoader loader = new FXMLLoader(getClass().getResource("CustomerProfile.fxml"));
     		AnchorPane root = (AnchorPane) loader.load();
     		CustomerProfileController profileC = loader.getController();
-    		profileC.setemail(Email);
-    		profileC.setName(Name);
+    		profileC.SeTEmail(Email);
     		Scene profile = new Scene(root);
     		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     		app_stage.setScene(profile);
@@ -247,7 +245,7 @@ public class HomePageController implements Initializable  {
     		AnchorPane root = (AnchorPane) loader.load();
     		YourDesign home = loader.getController();
     		home.SeTEmail(Email);
-    		home.SeTName(Name);
+    		home.SeTEmail(Name);
     		Scene SignUp = new Scene(root);
     		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
     		app_stage.setScene(SignUp);

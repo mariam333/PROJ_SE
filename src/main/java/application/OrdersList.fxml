@@ -34,7 +34,7 @@
       <TableView fx:id="OrdersTable" layoutX="19.0" layoutY="53.0" onMouseClicked="#EnableCansel" prefHeight="531.0" prefWidth="633.0" style="-fx-background-color: A5E8F4;">
         <columns>
           <TableColumn fx:id="OrderIdCol" prefWidth="121.33333778381348" style="-fx-background-color: #67A5EE;" text="Order ID" />
-            <TableColumn fx:id="ContentsCol" prefWidth="244.6667022705078" style="-fx-background-color: #67A5EE;" text="Date" />
+            <TableColumn fx:id="DateCol" prefWidth="244.6667022705078" style="-fx-background-color: #67A5EE;" text="Date" />
             <TableColumn fx:id="StatusCol" prefWidth="130.66659545898438" style="-fx-background-color: #67A5EE;" text="Status" />
             <TableColumn fx:id="totalprisecol" prefWidth="136.6666259765625" style="-fx-background-color: #67A5EE;" text="Total price" />
         </columns>

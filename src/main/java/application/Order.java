@@ -1,20 +1,48 @@
 package src.main.java.application;
 import java.util.Date;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class Order {
 	private String content;
 	private String status;
-	private Date PurchesTime;
+	private String PurchesTime;
 	private double total;
+	private String ID;
+	public   ObservableList<ItemClient> Items;
 	
 	
-	public Order(String content, String status, Date purchesTime , double money){
+	public Order(String content, String status, String purchesTime , double money,String id){
 		super();
 		this.content = content;
 		this.status = status;
 		PurchesTime = purchesTime;
 		this.total=money;
+		this.ID=id;
 	}
 	
+
+	public Order() {};
+		// TODO Auto-generated constructor stub
+	
+
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
+	public String getID() {
+		return ID;
+	}
+
+	public void setID(String iD) {
+		ID = iD;
+	}
+
 	public double getMoney() {
 		return total;
 	}
@@ -35,11 +63,11 @@ public class Order {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public Date getPurchesTime() {
+	public String getPurchesTime() {
 		return PurchesTime;
 	}
-	public void setPurchesTime(Date purchesTime) {
-		PurchesTime = purchesTime;
+	public void setPurchesTime(String strDate) {
+		PurchesTime = strDate.toString();
 	}
 	
 }

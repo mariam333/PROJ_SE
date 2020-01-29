@@ -69,7 +69,7 @@ public class viewItemController implements Initializable{
         ItemColorTxt.setText(selectedItem.getColor());
         PriceTxt.setText(Double.toString(selectedItem.getPrice()));
         ItemIDtxt.setText(Integer.toString(selectedItem.getItemId()));
-        Image im = new Image(selectedItem.getImage());
+        ImageView im = selectedItem.getImage();
         itemImage.setImage(im);
         ItemSale.setText((Integer.toString(selectedItem.getSale())) + "%");
         if(selectedItem.getSale() != 0) {

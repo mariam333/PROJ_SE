@@ -79,7 +79,7 @@ public class ComplaintsController  implements Initializable {
 		CustomerProfileController employee = loader.getController();
 		//Image im = new Image("images/background.jpg");
 		//employee.setimage(im);
-		employee.setemail(MyEmail);
+		employee.SeTEmail(MyEmail);
 		Scene regist = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(regist);

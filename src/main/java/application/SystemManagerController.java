@@ -57,6 +57,10 @@ public class SystemManagerController {
     
     String MyEmail = null;
     
+    void setEmail(String Email)
+    {
+    	MyEmail=Email;
+    }
     
 
     void Backto(ActionEvent event) throws IOException {

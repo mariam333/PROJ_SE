@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="403.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.YourDesignController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="402.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.YourDesignController">
    <children>
       <ImageView fitHeight="657.0" fitWidth="403.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +28,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="184.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="price" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter desired price of product" HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="price" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter price range of product" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="249.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
@@ -41,7 +41,7 @@
             <TextField id="email" fx:id="details" prefHeight="77.0" prefWidth="302.0" promptText="Enter extra details" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <Button fx:id="submit" layoutX="129.0" layoutY="466.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: white;" text="submit">
+      <Button fx:id="submit" layoutX="129.0" layoutY="466.0" mnemonicParsing="false" onAction="#Create" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: white;" text="submit">
          <font>
             <Font size="18.0" />
          </font>
@@ -51,5 +51,10 @@
             <Font name="Cambria Italic" size="18.0" />
          </font>
       </Label>
+      <Button layoutX="12.0" layoutY="604.0" mnemonicParsing="false" onAction="#back" text="back">
+         <font>
+            <Font name="Comic Sans MS" size="15.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

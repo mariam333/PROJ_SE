@@ -7,8 +7,8 @@ public class ItemPersonalClient extends ItemClient{
 		// TODO Auto-generated constructor stub
 	}
 
-	public ItemPersonalClient(int itemId, String color, double price, String type, String name) {
-		super(itemId, color, price, type, name);
+	public ItemPersonalClient( String color, double price, String name) {
+		super();
 		// TODO Auto-generated constructor stub
 	}
 	

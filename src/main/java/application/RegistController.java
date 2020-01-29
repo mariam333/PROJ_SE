@@ -105,17 +105,14 @@ public class RegistController implements Initializable {
 			JOptionPane.showMessageDialog(null, "Please enter correct date number ");
 
 		} else {
-			String message = "SignUp#" +ID.getText() + "#" + Fistname.getText() + lastname.getText() + "#" + password.getText() + "#" + email.getText() + "#" + mobile.getText() + "#" + visa.getText() + "#" + CVV.getText() + "#"
-					+ MM.getText() + "#" + "1";
+			String message = "SignUp#" + Fistname.getText() + lastname.getText() + "#" + password.getText() + "#" + email.getText() + "#" + mobile.getText() + "#" + visa.getText() + "#" + CVV.getText() + "#"
+					+ MM.getText();
 			ConnectController.client.handleMessageFromClientUI(message);
 
 			if (ConnectController.client.servermsg != null && "SignUp".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "You SignUp successfully ");
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
 				AnchorPane root = (AnchorPane) loader.load();
-				//HomePageController home = loader.getController();
-				//Image im = new Image("images/pink.jpg");
-				//home.setimage(im);
 				Scene regist = new Scene(root);
 				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				app_stage.setScene(regist);

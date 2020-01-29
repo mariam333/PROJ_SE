@@ -47,10 +47,12 @@ public class LoginController implements Initializable
 
 		String Email = email.getText();
 		String pass = password.getText();
-		String message = "SignIn#" + email.getText() + "#" + password.getText();
-		if (Email.equals("") || pass.equals("")) {
+		String message = "LogIn#" + email.getText() + "#" + password.getText();
+		if (Email.equals("") || pass.equals("")) 
+		{
 			JOptionPane.showMessageDialog(null, "One or more files are empty!! ");
-		} else {
+		}
+		else {
 			ConnectController.client.handleMessageFromClientUI(message);
 			if (ConnectController.client.servermsg != null && "NotFoundEmail".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "You are not registed !!");
@@ -61,7 +63,12 @@ public class LoginController implements Initializable
 				JOptionPane.showMessageDialog(null, "You entered uncorrect password !!");
 				ConnectController.client.servermsg=null;
 
-			} else if (ConnectController.client.servermsg != null && "SignIn".equals(ConnectController.client.servermsg)) 
+			}
+			else if (ConnectController.client.servermsg != null && "LogInFaild".equals(ConnectController.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "You are login in onther device !!");
+				ConnectController.client.servermsg=null;
+			}	
+			else if (ConnectController.client.servermsg != null && "SignIn".equals(ConnectController.client.servermsg)) 
 			{
 				if (email.getText().contains("@chwork.co.il")) 
 				{
@@ -69,7 +76,7 @@ public class LoginController implements Initializable
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("ChainWorker.fxml"));
 					AnchorPane root = (AnchorPane) loader.load();
 					chainWorkerController employee = loader.getController();
-					employee.setEmail(email.getText());
+					employee.SeTEmail(email.getText());
 					//Image im = new Image("images/background.jpg");
 					//employee.setimage(im);
 					Scene regist = new Scene(root);
@@ -85,7 +92,8 @@ public class LoginController implements Initializable
 					serviceWorkerController employee = loader.getController();
 					//Image im = new Image("images/background.jpg");
 					//employee.setimage(im);
-					employee.setEmail(email.getText());
+					employee.SeTEmail(email.getText());
+
 					Scene regist = new Scene(root);
 					Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					app_stage.setScene(regist);
@@ -95,9 +103,8 @@ public class LoginController implements Initializable
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreManager.fxml"));
 					AnchorPane root = (AnchorPane) loader.load();
 					StoreManagerController employee = loader.getController();
-					//Image im = new Image("images/background.jpg");
-					//employee.setimage(im);
 					employee.setEmail(email.getText());
+					employee.FullTable();
 					Scene regist = new Scene(root);
 					Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					app_stage.setScene(regist);
@@ -116,12 +123,12 @@ public class LoginController implements Initializable
 					app_stage.show();
 				} 
 				else if (email.getText().contains("@admin.co.il")) {
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("Administrator.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("Strores.fxml"));
 					AnchorPane root = (AnchorPane) loader.load();
-					AdministratorController employee = loader.getController();
+					StoresController employee = loader.getController();
 					//Image im = new Image("images/background.jpg");
 					//employee.setimage(im);
-					employee.setEmail(email.getText());
+					employee.AddStores();
 					Scene regist = new Scene(root);
 					Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 					app_stage.setScene(regist);

@@ -5,8 +5,10 @@ import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
-import src.main.java.client.*;
-import src.main.java.common.*;
+import client.ChatClient;
+import common.ChatIF;
+import client.*;
+import common.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

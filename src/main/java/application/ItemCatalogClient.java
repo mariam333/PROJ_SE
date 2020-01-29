@@ -22,6 +22,7 @@ public class ItemCatalogClient extends ItemClient {
 		this.quantity = quantity;
 		this.type = type;
 	}
+	
 
 	public String getType() {
 		return type;
