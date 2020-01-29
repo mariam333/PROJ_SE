@@ -2,7 +2,7 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com
 
-package src.main.java.common;
+package common;
 
 /**
  * This interface implements the abstract method used to display

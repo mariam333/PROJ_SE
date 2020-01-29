@@ -10,11 +10,14 @@ import java.sql.Statement;
 import ocsf.server.*;
 import common.*;
 import models.SendEmail;
-import models.Person;
 import models.Shopper;
 import models.Sold;
+import models.Staff;
+import models.Stores;
+import models.Complaints;
 import models.Item;
 import models.Order;
+import models.Report;
 
 /**
  * This class overrides some of the methods in the abstract 
@@ -390,20 +393,20 @@ case "SignUp":
 				e.printStackTrace();
 			}
 		case "LogIn":
-			String email = detail[1];
-			String pass = detail[2];
-			if (email.contains("@stoMan.com") || email.contains("@sysManc.com") || email.contains("@admin.com")|| 
-					email.contains("servWork.co.il")|| email.contains("chWork.com")) {
-				if (Staff.LogIn(email, pass) == 0) {
-					System.out.println(email+"gooo");
+			String email1 = detail[1];
+			String pass1 = detail[2];
+			if (email1.contains("@stoMan.com") || email1.contains("@sysManc.com") || email1.contains("@admin.com")|| 
+					email1.contains("servWork.co.il")|| email1.contains("chWork.com")) {
+				if (Staff.LogIn(email1, pass1) == 0) {
+					System.out.println(email1+"gooo");
 					this.handleMessageFromServerUI("LogIn");
 					break;
 
-				} else if (Staff.LogIn(email, pass) == 1) {
+				} else if (Staff.LogIn(email1, pass1) == 1) {
 					this.handleMessageFromServerUI("NotFoundEmail");
 					break;
 
-				} else if (Staff.LogIn(email, pass) == 2) {
+				} else if (Staff.LogIn(email1, pass1) == 2) {
 					this.handleMessageFromServerUI("NotFoundPass");
 					break;
 				} else  {
@@ -413,14 +416,14 @@ case "SignUp":
 			}
 
 				else {
-					if (Shopper.LogIn(email, pass) == 0) {
+					if (Shopper.LogIn(email1, pass1) == 0) {
 						this.handleMessageFromServerUI("LogIn");
 						break;
-					} else if (Shopper.LogIn(email, pass) == 1) {
+					} else if (Shopper.LogIn(email1, pass1) == 1) {
 						this.handleMessageFromServerUI("NotFoundEmail");
 						break;
 
-					} else if (Shopper.LogIn(email, pass) == 2) {
+					} else if (Shopper.LogIn(email1, pass1) == 2) {
 						this.handleMessageFromServerUI("NotFoundPass");
 						break;
 					}
@@ -430,10 +433,10 @@ case "SignUp":
 				}
 				}
 		case "SignOut":
-		    email = detail[1];
-			if (email.contains("@stoMan.com") || email.contains("@sysManc.com") || email.contains("@admin.com")|| 
-					email.contains("servWork.co.il")|| email.contains("chWork.com")) {
-			if (Staff.SignOut(email)==true) {
+		    email1 = detail[1];
+			if (email1.contains("@stoMan.com") || email1.contains("@sysManc.com") || email1.contains("@admin.com")|| 
+					email1.contains("servWork.co.il")|| email1.contains("chWork.com")) {
+			if (Staff.SignOut(email1)==true) {
 				this.handleMessageFromServerUI("SignOut");
 				break;
 			}
@@ -442,7 +445,7 @@ case "SignUp":
 				break;
 			}
 			}else 		
-				if (Shopper.SignOut(email)==true) {
+				if (Shopper.SignOut(email1)==true) {
 				this.handleMessageFromServerUI("SignOut");
 				break;
 			}
@@ -532,9 +535,9 @@ case "SignUp":
 			}
 		case "ShowComplaintBycomplaintIDAndDate":
 			 shopperID=Integer.parseInt(detail[1]);
-			String date=detail[2];
+			String date1=detail[2];
 			msgToClient="";
-			 msgToClient= Complaints.ShowComplaintBycomplaintIDAndDate(shopperID,date);
+			 msgToClient= Complaints.ShowComplaintBycomplaintIDAndDate(shopperID,date1);
 			if (msgToClient!=null) {
 				msgToClient="ShowComplaintBycomplaintIDAndDate%"+msgToClient;
 				this.handleMessageFromServerUI(msgToClient);
@@ -545,9 +548,9 @@ case "SignUp":
 			}
 		case "ShowComplaintsToHandel":
 			String time=detail[1];
-		    date=detail[2];
+		    date1=detail[2];
 			msgToClient="";
-			 msgToClient= Complaints.ShowComplaintsToHandel(time,date);
+			 msgToClient= Complaints.ShowComplaintsToHandel(time,date1);
 			if (msgToClient!=null) {
 				msgToClient="ShowComplaintsToHandel%"+msgToClient;
 				this.handleMessageFromServerUI(msgToClient);
@@ -620,7 +623,7 @@ case "SignUp":
     }
 
 
-  }
+  
 
   /**
    * This method handles all data coming from the UI

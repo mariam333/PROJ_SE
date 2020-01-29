@@ -2,10 +2,12 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
-package src.main.java.client;
+package client;
 
-import src.main.java.ocsf.client.*;
-import src.main.java.common.*;
+import client.*;
+import common.*;
+import ocsf.client.AbstractClient;
+
 import java.io.*;
 
 /**
