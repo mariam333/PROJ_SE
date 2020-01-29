@@ -81,13 +81,110 @@ public static String ShowShopper(int shopperID ) {
 			se.printStackTrace();
 		}
 	}
-	System.out.println(MsgtoClient);
 	return MsgtoClient;	
 	
 }
 
 
-public  boolean addShopper() throws ClassNotFoundException {
+public static int LogIn(String email, String password) {
+	Connection conn = null;
+	Statement stmt = null;
+	String useremail = null;
+	String userpass = null;
+	int access = 0;
+	/// **sql**///
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//*whire sql here*//
+		PreparedStatement prep_stmt = conn.prepareStatement("SELECT * FROM Shopper WHERE email=?");
+		prep_stmt.setString(1, email);
+		ResultSet rs = prep_stmt.executeQuery();
+		while (rs.next()) {
+			useremail = rs.getString("email");
+			userpass = rs.getString("password");
+			access = rs.getInt("access");
+
+		}
+		rs.close();
+		prep_stmt.close();
+		if (useremail == null) {
+			return 1;
+
+		} else if (useremail != null) {
+			if (!(userpass.equals(password))) {
+				return 2;
+			} else {
+				if (access == 0) {
+					PreparedStatement prep_stmt1 = conn
+							.prepareStatement("UPDATE Shopper SET access = ? WHERE email=?");
+					prep_stmt1.setInt(1, 1);
+					prep_stmt1.setString(2, useremail);
+					prep_stmt1.executeUpdate();
+					prep_stmt1.close();
+					conn.close();
+
+					return 0;
+				} else {
+					return 3;
+				}
+			}
+		}
+	} catch (SQLException se) {
+		se.printStackTrace();
+		System.out.println("SQLException: " + se.getMessage());
+		System.out.println("SQLState: " + se.getSQLState());
+		System.out.println("VendorError: " + se.getErrorCode());
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	return 3;
+}
+public static boolean DeleteShopper(int shopperID) {
+	Connection conn = null;
+	Statement stmt = null;
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		stmt = conn.createStatement();
+		String sql = "DELETE FROM Shopper WHERE shopperId=?";
+		
+		PreparedStatement update= conn.prepareStatement(sql);
+		update.setString(1,shopperID+"");
+		update.executeUpdate();
+		return true;
+}catch (SQLException se) {
+	
+	se.printStackTrace();
+	System.out.println("SQLException: " + se.getMessage());
+    System.out.println("SQLState: " + se.getSQLState());
+    System.out.println("VendorError: " + se.getErrorCode());
+} catch (Exception e) {
+	e.printStackTrace();
+}
+finally {
+	try {
+		if (stmt != null)
+			stmt.close();
+		if (conn != null)
+			conn.close();
+	} catch (SQLException se) {
+		se.printStackTrace();
+	}
+}
+	return false;
+}
+
+public static  boolean addShopper(String  fullName,String password,String email,int number,int visaNumber,int cvv ,int expiration) throws ClassNotFoundException {
 	
 
 	Connection conn = null;
@@ -99,21 +196,17 @@ public  boolean addShopper() throws ClassNotFoundException {
 		stmt = conn.createStatement();
 		String sql = "SELECT * FROM Shopper";
 		ResultSet rs = stmt.executeQuery(sql);
-		System.out.println("11111");
 		while (rs.next()) {
 			Email.add(rs.getString("Email"));
 		}
 		 if (Email.contains(email)) {
-			 System.out.println("2222");
 			return false;
 		 }
 		 else {	
-			 System.out.println("3333");
-			 System.out.println(fullName + password + email + number);
    String sql1 = "INSERT INTO Shopper VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	PreparedStatement update= conn.prepareStatement(sql1);
 	update.setLong(1, 0);
-	update.setString(2, fullName);
+	update.setString(2,fullName);
 	update.setString(3, password);
 	update.setString(4, email);
 	update.setLong(5, number);
@@ -124,10 +217,7 @@ public  boolean addShopper() throws ClassNotFoundException {
 	update.executeUpdate();
 	return true ;
 		 }
-
-    
-    }
-	catch (SQLException se) {
+	}catch (SQLException se) {
 		
 		se.printStackTrace();
 		System.out.println("SQLException: " + se.getMessage());
@@ -138,7 +228,6 @@ public  boolean addShopper() throws ClassNotFoundException {
 	}
 	finally {
 		try {
-			System.out.println("44444");
 			if (stmt != null)
 				stmt.close();
 			if (conn != null)
@@ -150,5 +239,178 @@ public  boolean addShopper() throws ClassNotFoundException {
 	return false;
 }
 
+public static boolean SignOut(String email) {
+	Connection conn = null;
+	Statement stmt = null;
+	String useremail = null;
+	int access = 0;
+	/// **sql**///
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//*whire sql here*//
+		PreparedStatement prep_stmt = conn.prepareStatement("SELECT * FROM Shopper WHERE email=?");
+		prep_stmt.setString(1, email);
+		ResultSet rs = prep_stmt.executeQuery();
+		while (rs.next()) {
+			useremail = rs.getString("email");
+			access = rs.getInt("access");
+		}
+		rs.close();
+		prep_stmt.close();
+		if (access == 1) {
+			PreparedStatement prep_stmt1 = conn
+					.prepareStatement("UPDATE Shopper SET access = ? WHERE email=?");
+			prep_stmt1.setInt(1, 0);
+			prep_stmt1.setString(2, useremail);
+			prep_stmt1.executeUpdate();
+			prep_stmt1.close();
+			conn.close();
+			return true;
+		}
+	} catch (SQLException se) {
+		se.printStackTrace();
+		System.out.println("SQLException: " + se.getMessage());
+		System.out.println("SQLState: " + se.getSQLState());
+		System.out.println("VendorError: " + se.getErrorCode());
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	return false;
+
+}
+public static boolean Edit(String WhatToEdit, String useremail, String WhatToSet) {
+	Connection conn = null;
+	Statement stmt = null;
+
+
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS); // *whire sql here*//
+		PreparedStatement prep_stmt = conn.prepareStatement("SELECT * FROM Shopper WHERE email=?");
+		prep_stmt.setString(1, useremail);
+		ResultSet rs = prep_stmt.executeQuery();
+		while (rs.next()) {
+			PreparedStatement prep_stmt2 = conn.prepareStatement("SELECT email FROM Shopper ");
+			ResultSet rs1 = prep_stmt2.executeQuery();
+			while (rs1.next()) {
+				if (WhatToSet.equals(rs1.getString("email"))) {//if i want to change the email but already used
+					return false;
+				}
+			}
+			PreparedStatement prep_stmt1 = conn
+					.prepareStatement("UPDATE Shopper SET " + WhatToEdit + "=?" + " WHERE email=?");
+			prep_stmt1.setString(1, WhatToSet);
+			prep_stmt1.setString(2, useremail);
+			prep_stmt1.executeUpdate();
+			prep_stmt1.close();
+		}
+		prep_stmt.close();
+		rs.close();
+		conn.close();
+
+	} catch (SQLException se) {
+		se.printStackTrace();
+		System.out.println("SQLException: " + se.getMessage());
+		System.out.println("SQLState: " + se.getSQLState());
+		System.out.println("VendorError: " + se.getErrorCode());
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	return true;
+}
+public static String ShowShopperID(String email) {
+	Connection conn = null;
+	Statement stmt = null;
+	String MsgtoClient="";
+	/// **sql**///
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+//*whire sql here*//
+		PreparedStatement prep_stmt = conn.prepareStatement("SELECT shopperID FROM Shopper WHERE email=?");
+		prep_stmt.setString(1, email);
+		ResultSet rs = prep_stmt.executeQuery();
+		while (rs.next()) {
+			MsgtoClient=rs.getString(1);
+		}
+		
+}catch (SQLException se) {
+	se.printStackTrace();
+	System.out.println("SQLException: " + se.getMessage());
+	System.out.println("SQLState: " + se.getSQLState());
+	System.out.println("VendorError: " + se.getErrorCode());
+} catch (Exception e) {
+	e.printStackTrace();
+} finally {
+	try {
+		if (stmt != null)
+			stmt.close();
+		if (conn != null)
+			conn.close();
+	} catch (SQLException se) {
+		se.printStackTrace();
+	}
+}
+	return MsgtoClient;	
+}
+public static boolean EditRefund(int shopperID, int refund) {
+	int oldRefund=0;
+	String email="";
+	boolean flag;
+	Connection conn = null;
+	Statement stmt = null;
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		stmt = conn.createStatement();
+		String sql = "SELECT * FROM Shopper WHERE shopperID="+shopperID;
+		ResultSet rs = stmt.executeQuery(sql);
+		while (rs.next()) {
+			oldRefund=rs.getInt("refund");
+			email=rs.getString("email");
+		}
+		refund=refund+oldRefund;
+		 flag= Edit("refund",email,refund+"");
+		if (flag == false) 
+			return false;
+
+}catch (SQLException se) {
+	se.printStackTrace();
+	System.out.println("SQLException: " + se.getMessage());
+	System.out.println("SQLState: " + se.getSQLState());
+	System.out.println("VendorError: " + se.getErrorCode());
+} catch (Exception e) {
+	e.printStackTrace();
+} finally {
+	try {
+		if (stmt != null)
+			stmt.close();
+		if (conn != null)
+			conn.close();
+	} catch (SQLException se) {
+		se.printStackTrace();
+	}
+}
+	return true;
+}
 
 }

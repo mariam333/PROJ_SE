@@ -206,7 +206,6 @@ public boolean addItem() throws ClassNotFoundException {
    String sql2 = "INSERT INTO Item (storeId, color,quantity,price,type,image) VALUES (?, ?, ?,?,?,?)";
 	PreparedStatement update= conn.prepareStatement(sql2);
 
-    
 	update.setLong(1, storeId);
 	update.setString(2, color);
 	update.setLong(3, quantity);
@@ -226,7 +225,6 @@ public boolean addItem() throws ClassNotFoundException {
 			return false;
 		}
 
-	
     }
 	}
 	catch (SQLException se) {
@@ -299,10 +297,8 @@ public String showCatalog(int storeId,char c)
 
 	
 public boolean discount (int storeId,double d)
-
 {
 	
-
 	Connection conn = null;
 	try {
 		try {
@@ -338,8 +334,6 @@ return true;
 }
 	
 
-	
-	
 
 }
 

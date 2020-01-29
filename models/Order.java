@@ -47,7 +47,6 @@ public class Order {
 	 this.date=date;
      this.shopperId=shopperId;
      
-	 
  }
  
  public void createOrder(ArrayList <Integer>a1 ,ArrayList<Sold> a2) throws ClassNotFoundException {
@@ -56,7 +55,6 @@ public class Order {
 	Statement stmt = null;
 	String MsgtoClient="";
 	 
-	
 
 	 try {
 			Class.forName(JDBC_DRIVER);
@@ -174,8 +172,9 @@ ID=rs.getInt("MAX(orderId)");
  
  
  
- public  void deleteOrder (int id,double add,int idS) throws ClassNotFoundException
+ public  String deleteOrder (int id,double add,int idS) throws ClassNotFoundException
 {
+	 String msg="";
 	Connection conn = null;
 	Statement stmt = null;
 	double r=0;
@@ -227,7 +226,7 @@ update2.executeUpdate();
     
 	}
 
-
+return msg;
 }
  
  
@@ -333,15 +332,10 @@ update2.executeUpdate();
 	 
 	return Orders;
 	 
-	 
-	
-	
-	
-	 
+
  }
  
- 
- 
+
  }
 			
 		
